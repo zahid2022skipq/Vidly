@@ -25,18 +25,19 @@ app.post("/vidly/genre", (req, res) => {
   const schema = {
     name: Joi.string().min(3).required(),
   };
-  const result = Joi.validate(req.body, schema);
+  const { error } = Joi.validate(req.body, schema);
 
-  console.log("====================================");
-  console.log(result.error.details[0].message);
-  console.log("====================================");
-  //   const newGenre = { id: genreId, name };
-  //   try {
-  //     genre.push(newGenre);
-  //     return res.status(200).send(genre);
-  //   } catch (error) {
-  //     return res.send(error);
-  //   }
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+
+  const newGenre = { id: genreId, name };
+  try {
+    genre.push(newGenre);
+    return res.status(200).send(genre);
+  } catch (error) {
+    return res.send(error);
+  }
 });
 
 app.listen(3000, () => {
