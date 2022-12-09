@@ -22,14 +22,21 @@ app.get("/vidly/genre", (req, res) => {
 app.post("/vidly/genre", (req, res) => {
   const { name } = req.body;
   const genreId = genre.length + 1;
+  const schema = {
+    name: Joi.string().min(3).required(),
+  };
+  const result = Joi.validate(req.body, schema);
 
-  const newGenre = { id: genreId, name };
-  try {
-    genre.push(newGenre);
-    return res.status(200).send(genre);
-  } catch (error) {
-    return res.send(error);
-  }
+  console.log("====================================");
+  console.log(result.error.details[0].message);
+  console.log("====================================");
+  //   const newGenre = { id: genreId, name };
+  //   try {
+  //     genre.push(newGenre);
+  //     return res.status(200).send(genre);
+  //   } catch (error) {
+  //     return res.send(error);
+  //   }
 });
 
 app.listen(3000, () => {
