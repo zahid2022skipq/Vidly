@@ -1,14 +1,13 @@
 import express from "express";
 import Joi from "joi";
+import Auth from "./auth.js";
+import logger from "./logger.js";
 
 const app = express();
 
 app.use(express.json());
-app.use(async function (req, res, next) {
-  console.log("Logging...");
-
-  next();
-});
+app.use(logger);
+app.use(Auth);
 
 const genre = [
   { id: 1, name: "g1" },
