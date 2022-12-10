@@ -4,10 +4,8 @@ import Joi from "joi";
 const app = express();
 
 app.use(express.json());
-app.use(function (req, res, next) {
-  setTimeout(() => {
-    console.log("Logging...");
-  }, 3000);
+app.use(async function (req, res, next) {
+  console.log("Logging...");
 
   next();
 });
