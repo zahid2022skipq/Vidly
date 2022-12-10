@@ -2,7 +2,15 @@ import express from "express";
 import Joi from "joi";
 
 const app = express();
+
 app.use(express.json());
+app.use(function (req, res, next) {
+  setTimeout(() => {
+    console.log("Logging...");
+  }, 3000);
+
+  next();
+});
 
 const genre = [
   { id: 1, name: "g1" },
