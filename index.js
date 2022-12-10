@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import Joi from "joi";
 import Auth from "./auth.js";
 import logger from "./logger.js";
@@ -6,6 +6,7 @@ import logger from "./logger.js";
 const app = express();
 
 app.use(express.json());
+app.use(urlencoded({ extended: true }));
 app.use(logger);
 app.use(Auth);
 
