@@ -1,8 +1,11 @@
 import express from "express";
 import Joi from "joi";
+import morgan from "morgan";
+
 import Auth from "./auth.js";
 import logger from "./logger.js";
 import dotenv from "dotenv";
+
 dotenv.config();
 const app = express();
 
@@ -12,6 +15,11 @@ app.use(Auth);
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get("env")}`);
+
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+  console.log("morgan enabled..");
+}
 
 const genre = [
   { id: 1, name: "g1" },
