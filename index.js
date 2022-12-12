@@ -1,4 +1,5 @@
 import express from "express";
+import config from "config";
 import Joi from "joi";
 import morgan from "morgan";
 
@@ -8,6 +9,9 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+console.log(`Applicaion name: ${config.get("name")}`);
+console.log(`Mail Server: ${config.get("mail.server")}`);
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get("env")}`);
