@@ -3,7 +3,14 @@ import Joi from "joi";
 
 const router = express.Router();
 
-router.get("/vidly/genre", (req, res) => {
+const genre = [
+  { id: 1, name: "g1" },
+  { id: 2, name: "g2" },
+  { id: 3, name: "g3" },
+  { id: 4, name: "g4" },
+];
+
+router.get("/", (req, res) => {
   try {
     return res.status(200).send({ message: "Genre", data: genre });
   } catch (error) {
@@ -11,7 +18,7 @@ router.get("/vidly/genre", (req, res) => {
   }
 });
 
-router.post("/vidly/genre", (req, res) => {
+router.post("/", (req, res) => {
   const { name } = req.body;
   const genreId = genre.length + 1;
   const schema = {

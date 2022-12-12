@@ -6,6 +6,8 @@ import morgan from "morgan";
 
 import dotenv from "dotenv";
 
+import genre from "./routes/genre.js";
+
 dotenv.config();
 const app = express();
 
@@ -28,14 +30,9 @@ if (app.get("env") === "development") {
   startupDebugger("morgan enabled..");
 }
 
-const genre = [
-  { id: 1, name: "g1" },
-  { id: 2, name: "g2" },
-  { id: 3, name: "g3" },
-  { id: 4, name: "g4" },
-];
-
 dbDebugger("Database conntected...");
+
+app.use("/vidly/genre", genre);
 
 app.get("/", (req, res) => {
   res.render("index", { title: "My Express App", message: "App is running" });
