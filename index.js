@@ -1,3 +1,5 @@
+import debug from "debug";
+
 import express from "express";
 import config from "config";
 import Joi from "joi";
@@ -10,6 +12,9 @@ const app = express();
 
 app.use(express.json());
 
+const startupDebugger = debug("app:startup");
+const dbDebugger = debug("app:db");
+
 console.log(`Applicaion name: ${config.get("name")}`);
 console.log(`Mail Server: ${config.get("mail.server")}`);
 
@@ -18,7 +23,7 @@ console.log(`app: ${app.get("env")}`);
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
-  console.log("morgan enabled..");
+  startupDebugger("morgan enabled..");
 }
 
 const genre = [
@@ -27,6 +32,8 @@ const genre = [
   { id: 3, name: "g3" },
   { id: 4, name: "g4" },
 ];
+
+dbDebugger("Database conntected...");
 
 app.get("/vidly/genre", (req, res) => {
   try {
