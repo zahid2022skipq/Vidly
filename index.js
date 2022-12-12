@@ -38,6 +38,10 @@ const genre = [
 
 dbDebugger("Database conntected...");
 
+app.get("/", (req, res) => {
+  res.render("index", { title: "My Express App", message: "App is running" });
+});
+
 app.get("/vidly/genre", (req, res) => {
   try {
     return res.status(200).send({ message: "Genre", data: genre });
