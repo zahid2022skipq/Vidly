@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.set("view engine", "pug");
-app.set("views", "./view"); //default value
+app.set("views", "./views"); //default value
 
 const startupDebugger = debug("app:startup");
 const dbDebugger = debug("app:db");
