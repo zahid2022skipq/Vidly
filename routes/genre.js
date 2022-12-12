@@ -1,6 +1,9 @@
+import express from "express";
 import Joi from "joi";
 
-app.get("/vidly/genre", (req, res) => {
+const router = express.Router();
+
+router.get("/vidly/genre", (req, res) => {
   try {
     return res.status(200).send({ message: "Genre", data: genre });
   } catch (error) {
@@ -8,7 +11,7 @@ app.get("/vidly/genre", (req, res) => {
   }
 });
 
-app.post("/vidly/genre", (req, res) => {
+router.post("/vidly/genre", (req, res) => {
   const { name } = req.body;
   const genreId = genre.length + 1;
   const schema = {
@@ -28,3 +31,5 @@ app.post("/vidly/genre", (req, res) => {
     return res.send(error);
   }
 });
+
+export default router;
