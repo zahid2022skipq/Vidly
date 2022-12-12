@@ -2,16 +2,12 @@ import express from "express";
 import Joi from "joi";
 import morgan from "morgan";
 
-import Auth from "./auth.js";
-import logger from "./logger.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(logger);
-app.use(Auth);
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
 console.log(`app: ${app.get("env")}`);
